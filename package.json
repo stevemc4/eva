@@ -1,0 +1,31 @@
+{
+  "name": "eva-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "babel-node src/app.js",
+    "dev:watch": "nodemon -i node_modules -x npm run dev",
+    "build": "babel src -d dist"
+  },
+  "author": "Dhika Rizky",
+  "license": "MIT",
+  "dependencies": {
+    "boom": "^7.3.0",
+    "chalk": "^2.4.2",
+    "dotenv": "^6.2.0",
+    "ejs": "^2.6.1",
+    "hapi": "^18.0.0",
+    "inert": "^5.1.2",
+    "joi": "^14.3.1",
+    "knex": "^0.16.3",
+    "mysql2": "^1.6.4",
+    "vision": "^5.4.4",
+    "yar": "^9.1.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0"
+  }
+}
