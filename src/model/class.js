@@ -42,11 +42,11 @@ class Class{
     async save(){
         try{
             if(this.id == undefined){
-                db('classes').insert({class: this.className})
+                await db('classes').insert({class: this.className})
             }
             else
             {
-                db('classes').update({class: this.className}).where('id', this.id)
+                await db('classes').update({class: this.className}).where('id', this.id)
             }
             return true
         }

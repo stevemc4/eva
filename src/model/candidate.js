@@ -53,10 +53,10 @@ class Candidate{
      * Creates new Candidate in database or updates the record if exists
      * @returns {boolean} True if action is successful
      */
-    save(){
+    async save(){
         try{
             if(this.id == undefined)
-                db('candidate').insert({
+                await db('candidate').insert({
                     name: this.name, 
                     class: this.class.id, 
                     vision: this.vision, 
@@ -64,7 +64,7 @@ class Candidate{
                     quote: this.quote, 
                     image: this.image})
             else
-                db('candidate').update({
+                await db('candidate').update({
                     name: this.name,
                     class: this.class.id,
                     vision: this.vision,
