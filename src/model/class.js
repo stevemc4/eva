@@ -21,12 +21,12 @@ class Class{
      */
     static async get(className){
         if(className != undefined){
-            var c = await db('classes').select('class').where('class', className)
+            let c = await db('classes').select('class').where('class', className)
             return new Class(c[0])
         }
         else{
-            var temp = []
-            var c = await db('classes').select('class').where('class', className)
+            let temp = []
+            let c = await db('classes').select('class').where('class', className)
             for(let item of c)
             {
                 temp.push(new Class(item))
