@@ -28,9 +28,9 @@ async function createDatabase(username, password)
     
     db.schema.createTable('user', (table) => {
         table.increments('id').primary()
-        table.string('username', 64).unique()
+        table.string('username', 64).notNullable().unique()
         table.string('password').notNullable()
-        table.integer('level')
+        table.integer('level').notNullable()
     })
     .createTable('classes', (table) => {
         table.increments('id').primary()
@@ -46,7 +46,7 @@ async function createDatabase(username, password)
     .createTable('candidate', (table) => {
         table.increments('id').primary()
         table.string('name').notNullable()
-        table.integer('class').unsigned().references('id').inTable('classes')
+        table.integer('class').notNullable().unsigned().references('id').inTable('classes')
         table.string('vision').notNullable()
         table.text('mission').notNullable()
         table.string('quote').notNullable()
