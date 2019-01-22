@@ -9,6 +9,9 @@ import installer from './install/installer'
 
 dotenv.config()
 
+/**
+ * Server instance
+ */
 const server = new hapi.Server({
     port: process.env.PORT,
     routes: {
@@ -18,6 +21,9 @@ const server = new hapi.Server({
 
 server.route(router)
 
+/**
+ * Provision the server and starts it
+ */
 async function provision(){
     await server.register(inert)
 
