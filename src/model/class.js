@@ -15,24 +15,37 @@ class Class{
     }
 
     /**
-     * Get instances from database
-     * @param {string} [className] Class name to find
-     * @returns {(Class | Class[])} Class instance
+     * Get all instances from database
+     * @returns {(Class)} Class instance
      */
-    static async get(className){
-        if(className != undefined){
-            let c = await db('classes').select('class').where('class', className)
-            return new Class(c[0])
+    static async findAll(){
+        let temp = []
+        let c = await db('classes').select('class')
+        for(let item of c)
+        {
+            temp.push(new Class(item))
         }
-        else{
-            let temp = []
-            let c = await db('classes').select('class').where('class', className)
-            for(let item of c)
-            {
-                temp.push(new Class(item))
-            }
-            return temp
-        }
+        return temp
+    }
+
+    /**
+     * Get an instance from database by ID
+     * @param {string} [id] Object ID to find
+     * @returns {(Class)} Class instance
+     */
+    static async findById(id){
+        let c = await db('classes').select('class').where('id', id)
+        return new Class(c[0])
+    }
+
+    /**
+     * Get an instance from database by class name
+     * @param {string} [className] Class name to find
+     * @returns {(Class)} Class instance
+     */
+    static async findByClassName(className){
+        let c = await db('classes').select('class').where('class', className)
+        return new Class(c[0])
     }
 
     /**
