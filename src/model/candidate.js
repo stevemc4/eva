@@ -16,13 +16,19 @@ class Candidate{
      * @param {string} data.image Candidate picture to show in ballot
      */
     constructor(data){
-        this.id = data.id || undefined
-        this.name = data.name
-        this.class = new Class({class: data.class})
-        this.vision = data.vision
-        this.mission = data.mission
-        this.quote = data.quote
-        this.image = data.image
+        return new Promise((resolve, reject) => {
+            this.id = data.id || undefined
+            this.name = data.name
+            if((typeof data.class) == Class)
+                this.class = data.class
+            else
+                this.class = await Class.findById(data.class)
+            this.vision = data.vision
+            this.mission = data.mission
+            this.quote = data.quote
+            this.image = data.image
+            resolve(this)
+        })
     }
 
     /**
