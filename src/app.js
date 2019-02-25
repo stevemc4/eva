@@ -15,8 +15,13 @@ dotenv.config()
 const server = new hapi.Server({
     port: process.env.PORT,
     routes: {
-        cors: true
-    }
+        cors: true,
+        validate: {
+            failAction(req, h, err){
+                throw err
+            }
+        }
+    },
 })
 
 server.route(router)
