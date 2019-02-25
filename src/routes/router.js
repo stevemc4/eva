@@ -1,6 +1,7 @@
 import hapi from 'hapi'
 import boom from 'boom'
 import os from 'os'
+import Candidate from '../model/candidate'
 
 /**
  * @type {hapi.ServerRoute[]}
@@ -38,6 +39,14 @@ var routes = [
                 nodever: process.version,
                 hostname: os.hostname()
             }
+        }
+    },
+    {
+        path: '/api/candidates',
+        method: 'GET',
+        async handler(req, h){
+            let data = await Candidate.findAll()
+            return data
         }
     }
 ]
