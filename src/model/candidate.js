@@ -32,11 +32,11 @@ class Candidate{
     }
 
     /**
-     * Get instances from database
+     * Get an instance from database by ID
      * @param {number} [id] Candidate Object ID
      * @returns {(Candidate | Candidate[])} Candidate instance
      */
-    static async get(id){
+    static async findById(id){
         if(id != undefined){
             let c = await db('candidate').select(['candidate.id', 'name', 'vision', 'mission', 'quote', 'image', 'classes.class'])
             .innerJoin('classes', 'candidate.class = classes.id')
