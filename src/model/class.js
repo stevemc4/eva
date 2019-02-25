@@ -20,7 +20,7 @@ class Class{
      */
     static async findAll(){
         let temp = []
-        let c = await db('classes').select('class')
+        let c = await db('classes').select()
         for(let item of c)
         {
             temp.push(new Class(item))
@@ -34,7 +34,7 @@ class Class{
      * @returns {(Class)} Class instance
      */
     static async findById(id){
-        let c = await db('classes').select('class').where('id', id)
+        let c = await db('classes').select().where('id', id)
         return new Class(c[0])
     }
 
@@ -44,7 +44,7 @@ class Class{
      * @returns {(Class)} Class instance
      */
     static async findByClassName(className){
-        let c = await db('classes').select('class').where('class', className)
+        let c = await db('classes').select().where('class', className)
         return new Class(c[0])
     }
 
