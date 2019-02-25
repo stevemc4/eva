@@ -41,13 +41,18 @@ class Candidate{
      * @returns {Candidate[]} Candidate instances
      */
     static async findAll(){
-        let temp = []
-        let c = await db('candidate').select()
-        for(let item of c)
-        {
-            temp.push(await new Candidate(item))
+        try{
+            let temp = []
+            let c = await db('candidate').select()
+            for(let item of c)
+            {
+                temp.push(await new Candidate(item))
+            }
+            return temp
         }
-        return temp
+        catch(e){
+            throw e
+        }
     }
 
     /**
@@ -56,9 +61,14 @@ class Candidate{
      * @returns {Candidate} Candidate instance
      */
     static async findById(id){
-        let c = await db('candidate').select()
-        .where('candidate.id', id)
-        return new Candidate(c[0])
+        try{
+            let c = await db('candidate').select()
+            .where('candidate.id', id)
+            return new Candidate(c[0])
+        }
+        catch(e){
+            throw e
+        }
     }
 
     /**
