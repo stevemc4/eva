@@ -32,27 +32,30 @@ class Candidate{
     }
 
     /**
+     * Get all instances from database
+     * @returns {Candidate[]} Candidate instances
+     */
+    static async findAll(){
+        let temp = []
+        let c = await db('candidate').select(['candidate.id', 'name', 'vision', 'mission', 'quote', 'image', 'classes.class'])
+        .innerJoin('classes', 'candidate.class = classes.id')
+        for(let item of c)
+        {
+            temp.push(new Candidate(item))
+        }
+        return temp
+    }
+
+    /**
      * Get an instance from database by ID
      * @param {number} [id] Candidate Object ID
-     * @returns {(Candidate | Candidate[])} Candidate instance
+     * @returns {Candidate} Candidate instance
      */
     static async findById(id){
-        if(id != undefined){
-            let c = await db('candidate').select(['candidate.id', 'name', 'vision', 'mission', 'quote', 'image', 'classes.class'])
-            .innerJoin('classes', 'candidate.class = classes.id')
-            .where('candidate.id', id)
-            return new Candidate(c[0])
-        }
-        else{
-            let temp = []
-            let c = await db('candidate').select(['candidate.id', 'name', 'vision', 'mission', 'quote', 'image', 'classes.class'])
-            .innerJoin('classes', 'candidate.class = classes.id')
-            for(let item of c)
-            {
-                temp.push(new Candidate(item))
-            }
-            return temp
-        }
+        let c = await db('candidate').select(['candidate.id', 'name', 'vision', 'mission', 'quote', 'image', 'classes.class'])
+        .innerJoin('classes', 'candidate.class = classes.id')
+        .where('candidate.id', id)
+        return new Candidate(c[0])
     }
 
     /**
