@@ -40,14 +40,6 @@ var routes = [
                 hostname: os.hostname()
             }
         }
-    },
-    {
-        path: '/api/candidates',
-        method: 'GET',
-        async handler(req, h){
-            let data = await Candidate.findAll()
-            return data
-        }
     }
 ]
 
