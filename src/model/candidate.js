@@ -16,18 +16,23 @@ class Candidate{
      * @param {string} data.image Candidate picture to show in ballot
      */
     constructor(data){
-        return new Promise((resolve, reject) => {
-            this.id = data.id || undefined
-            this.name = data.name
-            if((typeof data.class) == Class)
-                this.class = data.class
-            else
-                this.class = await Class.findById(data.class)
-            this.vision = data.vision
-            this.mission = data.mission
-            this.quote = data.quote
-            this.image = data.image
-            resolve(this)
+        return new Promise(async (resolve, reject) => {
+            try{
+                this.id = data.id || undefined
+                this.name = data.name
+                if((typeof data.class) == Class)
+                    this.class = data.class
+                else
+                    this.class = await Class.findById(data.class)
+                this.vision = data.vision
+                this.mission = data.mission
+                this.quote = data.quote
+                this.image = data.image
+                resolve(this)
+            }
+            catch(e){
+                reject(e)
+            }
         })
     }
 
@@ -37,11 +42,10 @@ class Candidate{
      */
     static async findAll(){
         let temp = []
-        let c = await db('candidate').select(['candidate.id', 'name', 'vision', 'mission', 'quote', 'image', 'classes.class'])
-        .innerJoin('classes', 'candidate.class = classes.id')
+        let c = await db('candidate').select()
         for(let item of c)
         {
-            temp.push(new Candidate(item))
+            temp.push(await new Candidate(item))
         }
         return temp
     }
@@ -52,8 +56,7 @@ class Candidate{
      * @returns {Candidate} Candidate instance
      */
     static async findById(id){
-        let c = await db('candidate').select(['candidate.id', 'name', 'vision', 'mission', 'quote', 'image', 'classes.class'])
-        .innerJoin('classes', 'candidate.class = classes.id')
+        let c = await db('candidate').select()
         .where('candidate.id', id)
         return new Candidate(c[0])
     }
