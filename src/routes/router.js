@@ -1,12 +1,13 @@
 import hapi from 'hapi'
 import boom from 'boom'
 import os from 'os'
-import Candidate from '../model/candidate'
+import candidate from './api/candidate'
 
 /**
  * @type {hapi.ServerRoute[]}
  */
 var routes = [
+    ...candidate,
     {
         path: '/{path*}',
         method: 'GET',
