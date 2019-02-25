@@ -97,7 +97,7 @@ class Candidate{
             return true
         }
         catch(e){
-            return false
+            throw e
         }
     }
 }
