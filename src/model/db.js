@@ -10,7 +10,7 @@ const db = knex({
         host: 'localhost',
         user: config.db.user,
         password: config.db.password,
-        db: 'evadb'
+        database: 'evadb'
     },
     client: 'mysql2'
 })
