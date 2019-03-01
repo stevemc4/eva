@@ -1,4 +1,4 @@
-import db from './db'
+import db from '../lib/db'
 import password from '../lib/password'
 import Password from '../lib/password';
 
