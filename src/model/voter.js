@@ -83,7 +83,7 @@ class Voter{
                     class: this.class.id,
                     user: this.user.id,
                     nis: this.nis
-                    })
+                })
             else
                 await db('voter').update({
                     name: this.name, 
