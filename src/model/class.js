@@ -16,7 +16,7 @@ class Class{
 
     /**
      * Get all instances from database
-     * @returns {(Class)} Class instance
+     * @returns {Class[]} Class instances
      */
     static async findAll(){
         let temp = []
@@ -30,8 +30,8 @@ class Class{
 
     /**
      * Get an instance from database by ID
-     * @param {string} [id] Object ID to find
-     * @returns {(Class)} Class instance
+     * @param {string} id Object ID to find
+     * @returns {Class} Class instance
      */
     static async findById(id){
         let c = await db('classes').select().where('id', id)
@@ -40,8 +40,8 @@ class Class{
 
     /**
      * Get an instance from database by class name
-     * @param {string} [className] Class name to find
-     * @returns {(Class)} Class instance
+     * @param {string} className Class name to find
+     * @returns {Class} Class instance
      */
     static async findByClassName(className){
         let c = await db('classes').select().where('class', className)

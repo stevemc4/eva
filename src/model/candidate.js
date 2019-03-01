@@ -9,7 +9,7 @@ class Candidate{
      * Create new Candidate instance
      * @param {object} data Initial data
      * @param {string} data.name Candidate's name
-     * @param {Class}  data.class Candidate's class
+     * @param {Class | number}  data.class Candidate's class
      * @param {string} data.vision Candidate's Vision
      * @param {string} data.mission Candidate's Mission
      * @param {string} data.quote Candidate's short quote
@@ -57,7 +57,7 @@ class Candidate{
 
     /**
      * Get an instance from database by ID
-     * @param {number} [id] Candidate Object ID
+     * @param {number} id Candidate Object ID
      * @returns {Candidate} Candidate instance
      */
     static async findById(id){

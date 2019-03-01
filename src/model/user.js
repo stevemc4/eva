@@ -21,27 +21,31 @@ class User{
     }
 
     /**
-     * Get instances from database
-     * @param {string} username Username to search
-     * @returns {(User | User[])} User instance
+     * Get all instances from database
+     * @returns {User[]} User instances
      */
-    static async get(username){
-        if (username != undefined){
-            let c = await db('user').select().where('username', username)
-            return new User(c[0])
+    static async findAll(){
+        let temp = []
+        let c = await db('user').select()
+        for(let item of c)
+        {
+            temp.push(new User(item))
         }
-        else{
-            let temp = []
-            let c = await db('user').select()
-            for(let item of c){
-                temp.push(new User(item))
-            }
-            return temp
-        }        
+        return temp
     }
 
     /**
-     * Creates new Candidate in database or updates the record if exists
+     * Get an instance from database by ID
+     * @param {string} [id] Object ID to find
+     * @returns {User} User instance
+     */
+    static async findById(id){
+        let c = await db('user').select().where('id', id)
+        return new User(c[0])
+    }
+
+    /**
+     * Creates new User in database or updates the record if exists
      * @param {boolean} savePasswordOnUpdate Save new password to database on record update
      * @returns {boolean} True if action is successful
      */
