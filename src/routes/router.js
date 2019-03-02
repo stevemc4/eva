@@ -1,8 +1,10 @@
 import hapi from 'hapi'
 import boom from 'boom'
 import os from 'os'
+
 import candidate from './api/candidate'
 import user from './api/user'
+import auth from './api/authentication'
 
 /**
  * @type {hapi.ServerRoute[]}
@@ -10,6 +12,7 @@ import user from './api/user'
 var routes = [
     ...candidate,
     ...user,
+    ...auth,
     {
         path: '/{path*}',
         method: 'GET',
