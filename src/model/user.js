@@ -25,13 +25,18 @@ class User{
      * @returns {User[]} User instances
      */
     static async findAll(){
-        let temp = []
-        let c = await db('user').select()
-        for(let item of c)
-        {
-            temp.push(new User(item))
+        try{
+            let temp = []
+            let c = await db('user').select()
+            for(let item of c)
+            {
+                temp.push(new User(item))
+            }
+            return temp
         }
-        return temp
+        catch(e){
+            throw e
+        }
     }
 
     /**
@@ -40,8 +45,13 @@ class User{
      * @returns {User} User instance
      */
     static async findById(id){
-        let c = await db('user').select().where('id', id)
-        return new User(c[0])
+        try{
+            let c = await db('user').select().where('id', id)
+            return new User(c[0])
+        }
+        catch(e){
+            throw e
+        }
     }
 
     /**
@@ -50,8 +60,13 @@ class User{
      * @returns {User} User instance
      */
     static async findByUsername(username){
-        let c = await db('user').select().where('username', username)
-        return new User(c[0])
+        try{
+            let c = await db('user').select().where('username', username)
+            return new User(c[0])
+        }
+        catch(e){
+            throw e
+        }
     }
 
     /**
