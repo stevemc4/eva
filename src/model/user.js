@@ -36,11 +36,21 @@ class User{
 
     /**
      * Get an instance from database by ID
-     * @param {string} [id] Object ID to find
+     * @param {string} id Object ID to find
      * @returns {User} User instance
      */
     static async findById(id){
         let c = await db('user').select().where('id', id)
+        return new User(c[0])
+    }
+
+    /**
+     * Get an instance from database by Username
+     * @param {string} username Username to find
+     * @returns {User} User instance
+     */
+    static async findByUsername(username){
+        let c = await db('user').select().where('username', username)
         return new User(c[0])
     }
 
