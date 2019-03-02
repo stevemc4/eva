@@ -3,6 +3,7 @@ import chalk from 'chalk'
 
 import hapi from 'hapi'
 import inert from 'inert'
+import yar from 'yar'
 
 import router from './routes/router'
 import installer from './install/installer'
@@ -31,6 +32,16 @@ server.route(router)
  */
 async function provision(){
     await server.register(inert)
+    await server.register({
+        plugin: yar,
+        options: {
+            cookieOptions: {
+                isSecure: false,
+                password: process.env.CRYPTO
+            },
+            name: 'eva-sess'
+        }
+    })
 
     server.start()
 
