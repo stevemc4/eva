@@ -81,14 +81,14 @@ class Voter{
                 await db('voter').insert({
                     name: this.name, 
                     class: this.class.id,
-                    user: this.user.id,
+                    userid: this.user.id,
                     nis: this.nis
                 })
             else
                 await db('voter').update({
                     name: this.name, 
                     class: this.class.id,
-                    user: this.user.id,
+                    userid: this.user.id,
                     nis: this.nis
                 }).where('id', this.id)
             return true
