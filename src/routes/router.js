@@ -4,6 +4,7 @@ import os from 'os'
 
 import candidate from './api/candidate'
 import user from './api/user'
+import voter from './api/voter'
 import auth from './api/authentication'
 
 /**
@@ -13,6 +14,7 @@ var routes = [
     ...candidate,
     ...user,
     ...auth,
+    ...voter,
     {
         path: '/{path*}',
         method: 'GET',
