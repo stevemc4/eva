@@ -19,11 +19,11 @@ class Voter{
             try{
                 this.id = data.id || undefined
                 this.name = data.name
-                if((typeof data.class) == Class)
+                if(data.class instanceof Class)
                     this.class = data.class
                 else
                     this.class = await Class.findById(data.class)
-                if((typeof data.user) == User)
+                if(data.user instanceof User)
                     this.user = data.user
                 else
                     this.user = await User.findById(data.user)

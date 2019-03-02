@@ -21,11 +21,11 @@ class Votes{
                 this.id = data.id || undefined
                 this.votedAt = data.votedAt
                 this.signature = data.signature
-                if((typeof data.voter) == Voter)
+                if(data.voter instanceof Voter)
                     this.voter = data.voter
                 else
                     this.voter = await Voter.findById(data.voter)
-                if((typeof data.votedTo) == Candidate)
+                if(data.votedTo instanceof Candidate)
                     this.votedTo = data.votedTo
                 else
                     this.votedTo = await Candidate.findById(data.votedTo)

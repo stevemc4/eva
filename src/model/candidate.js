@@ -20,7 +20,7 @@ class Candidate{
             try{
                 this.id = data.id || undefined
                 this.name = data.name
-                if((typeof data.class) == Class)
+                if(data.class instanceof Class)
                     this.class = data.class
                 else
                     this.class = await Class.findById(data.class)
