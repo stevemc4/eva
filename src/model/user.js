@@ -73,7 +73,7 @@ class User{
             return true
         }
         catch(e){
-            return false
+            throw e
         }
     }
 }
