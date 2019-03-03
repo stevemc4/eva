@@ -42,9 +42,10 @@ async function provision(){
                 isSecure: false,
                 password: process.env.CRYPTO,
                 path: '/',
-                isSameSite: false
+                isSameSite: false,
             },
-            name: 'eva-sess'
+            name: 'eva-sess',
+            storeBlank: false
         }
     })
 
