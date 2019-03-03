@@ -16,7 +16,10 @@ dotenv.config()
 const server = new hapi.Server({
     port: process.env.PORT,
     routes: {
-        cors: true,
+        cors: {
+            origin: ['*'],
+            credentials: true
+        },
         validate: {
             failAction(req, h, err){
                 throw err
@@ -37,7 +40,9 @@ async function provision(){
         options: {
             cookieOptions: {
                 isSecure: false,
-                password: process.env.CRYPTO
+                password: process.env.CRYPTO,
+                path: '/',
+                isSameSite: false
             },
             name: 'eva-sess'
         }
