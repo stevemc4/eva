@@ -39,6 +39,18 @@ var routes = [
                 }
             }
         }
+    },
+    {
+        path: '/api/auth/logout',
+        method: 'GET',
+        handler(req, h){
+            req.yar.reset()
+            return {
+                statusCode: 200,
+                error: null,
+                message: ''
+            }
+        }
     }
 ]
 
