@@ -51,6 +51,22 @@ var routes = [
                 message: ''
             }
         }
+    },
+    {
+        path: '/api/auth/check',
+        method: 'GET',
+        handler(req, h){
+            if(req.yar.get('id') != null){
+                return {
+                    statusCode: 200,
+                    error: null,
+                    message: ''
+                }
+            }
+            else{
+                return boom.unauthorized()
+            }
+        }
     }
 ]
 
