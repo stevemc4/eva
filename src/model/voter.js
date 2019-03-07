@@ -43,7 +43,7 @@ class Voter{
     static async findAll(){
         try{
             let temp = []
-            let c = await db('Voter').select()
+            let c = await db('voter').select()
             for(let item of c)
             {
                 temp.push(await new Voter(item))
@@ -62,7 +62,7 @@ class Voter{
      */
     static async findById(id){
         try{
-            let c = await db('Voter').select()
+            let c = await db('voter').select()
             .where('Voter.id', id)
             return new Voter(c[0])
         }
@@ -78,7 +78,7 @@ class Voter{
      */
     static async findByUserId(id){
         try{
-            let c = await db('Voter').select()
+            let c = await db('voter').select()
             .where('userid', id)
             return new Voter(c[0])
         }
