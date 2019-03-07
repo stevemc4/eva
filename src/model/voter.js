@@ -72,6 +72,22 @@ class Voter{
     }
 
     /**
+     * Get an instance from database by User ID
+     * @param {number} id User ID
+     * @returns {Voter} Voter instance
+     */
+    static async findByUserId(id){
+        try{
+            let c = await db('Voter').select()
+            .where('userid', id)
+            return new Voter(c[0])
+        }
+        catch(e){
+            throw e
+        }
+    }
+
+    /**
      * Creates new voter in database or updates the record if exists
      * @returns {boolean} True if action is successful
      */
