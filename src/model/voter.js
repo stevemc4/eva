@@ -63,7 +63,7 @@ class Voter{
     static async findById(id){
         try{
             let c = await db('voter').select()
-            .where('Voter.id', id)
+            .where('id', id)
             return new Voter(c[0])
         }
         catch(e){
@@ -79,7 +79,7 @@ class Voter{
     static async findByUserId(id){
         try{
             let c = await db('voter').select()
-            .where('userid', id)
+            .where('user', id)
             return new Voter(c[0])
         }
         catch(e){
