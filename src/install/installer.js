@@ -39,7 +39,7 @@ async function createDatabase(username, password)
     .createTable('voter', (table) => {
         table.increments('id').primary()
         table.string('nis', 12).unique().notNullable()
-        table.integer('userId').unsigned().notNullable().unique().references('id').inTable('user')
+        table.integer('user').unsigned().notNullable().unique().references('id').inTable('user')
         table.string('name').notNullable()
         table.integer('class').unsigned().references('id').inTable('classes').notNullable()
     })
