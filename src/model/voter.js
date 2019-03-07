@@ -87,6 +87,12 @@ class Voter{
         }
     }
 
+    sanitize(){
+        let newInstance = this
+        delete newInstance.user.password
+        return newInstance
+    }
+
     /**
      * Creates new voter in database or updates the record if exists
      * @returns {boolean} True if action is successful
