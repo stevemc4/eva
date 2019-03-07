@@ -57,6 +57,23 @@ var routes = [
                 }
             }
         },
+    },
+    {
+        path: '/api/voter/this',
+        method: 'GET',
+        async handler(req, h){
+            try{
+                let voterData = await Voter.findByUserId(req.auth.credentials.user.id)
+                return voterData.sanitize()
+            }
+            catch(e){
+                console.log(e)
+                return boom.internal()
+            }
+        },
+        options: {
+            auth: 'cAuth'
+        }
     }
 ]
 
