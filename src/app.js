@@ -4,9 +4,12 @@ import chalk from 'chalk'
 import hapi from 'hapi'
 import inert from 'inert'
 import yar from 'yar'
+import boom from 'boom'
 
 import router from './routes/router'
 import installer from './install/installer'
+
+import User from './model/user'
 
 dotenv.config()
 
@@ -27,6 +30,30 @@ const server = new hapi.Server({
         }
     },
 })
+
+server.auth.scheme('cAuth', (server, options) => {
+    return{
+        async authenticate(req, h){
+            let userId = req.yar.get('id')
+            if(userId != null){
+                let userData = await User.findById(userId)
+                return h.authenticated({
+                    credentials: {
+                        user: {
+                            id: userData.id,
+                            username: userData.username,
+                            level: userData.level
+                        }
+                    }
+                })
+            }
+            else{
+                throw boom.unauthorized()
+            }
+        }
+    }
+})
+server.auth.strategy('cAuth', 'cAuth')
 
 server.route(router)
 
