@@ -21,7 +21,10 @@ var routes = [
                     return {
                         statusCode: 200,
                         error: null,
-                        message: 'Login Successful'
+                        message: 'Login Successful',
+                        payload: {
+                            level: req.auth.credentials.user.level
+                        }
                     }
                 }
                 else
