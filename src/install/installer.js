@@ -55,7 +55,7 @@ async function createDatabase(username, password)
     .createTable('votes', (table) => {
         table.increments('id').primary()
         table.dateTime('votedAt').notNullable().defaultTo(db.fn.now())
-        table.integer('voter').unsigned().notNullable().references('id').inTable('voter')
+        table.integer('voter').unsigned().notNullable().unique().references('id').inTable('voter')
         table.integer('votedTo').unsigned().notNullable().references('id').inTable('candidate')
         table.string('signature', 512).notNullable()
     }).then(() => {
