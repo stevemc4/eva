@@ -59,7 +59,10 @@ var routes = [
             return {
                 statusCode: 200,
                 error: null,
-                message: ''
+                message: '',
+                payload: {
+                    level: req.auth.credentials.user.level
+                }
             }
         },
         options: {
