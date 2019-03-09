@@ -23,7 +23,7 @@ var routes = [
                         error: null,
                         message: 'Login Successful',
                         payload: {
-                            level: req.auth.credentials.user.level
+                            level: user.level
                         }
                     }
                 }
