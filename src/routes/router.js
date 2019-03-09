@@ -2,10 +2,21 @@ import hapi from 'hapi'
 import boom from 'boom'
 import os from 'os'
 
+import candidate from './api/candidate'
+import user from './api/user'
+import voter from './api/voter'
+import classes from './api/class'
+import auth from './api/authentication'
+
 /**
  * @type {hapi.ServerRoute[]}
  */
 var routes = [
+    ...candidate,
+    ...user,
+    ...auth,
+    ...voter,
+    ...classes,
     {
         path: '/{path*}',
         method: 'GET',
