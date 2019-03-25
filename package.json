@@ -23,6 +23,7 @@
     "moment-timezone": "^0.5.23",
     "mysql2": "^1.6.4",
     "vision": "^5.4.4",
+    "vue-server-renderer": "^2.6.10",
     "yar": "^9.1.0"
   },
   "devDependencies": {
